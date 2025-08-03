@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark;
+}
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+ 
+html {
+  scroll-behavior: smooth;
+}
+
+.label-style {
+  @apply flex items-center gap-2 font-medium text-gray-700 dark:text-gray-300 mb-1;
+}
+
+.input-style {
+  @apply w-full px-4 py-2 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500;
+}
+

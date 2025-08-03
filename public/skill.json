@@ -1,0 +1,63 @@
+[
+    {
+      "id": 1,
+      "title": "React.js",
+      "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+      "description": "A powerful JavaScript library for building dynamic and responsive user interfaces using a component-based architecture."
+    },
+    {
+      "id": 2,
+      "title": "JavaScript",
+      "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+      "description": "The essential scripting language for web development, enabling interactive and functional web pages with real-time behavior."
+    },
+    {
+      "id": 3,
+      "title": "HTML5",
+      "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+      "description": "The backbone of the web, used for structuring content in a semantic and accessible manner."
+    },
+    {
+      "id": 4,
+      "title": "CSS3",
+      "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
+      "description": "The styling language that brings design to life with layouts, animations, and responsiveness."
+    },
+    {
+      "id": 5,
+      "title": "Tailwind CSS",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg",
+      "description": "A utility-first CSS framework for rapidly building modern and custom UIs with minimal code."
+    },
+    {
+      "id": 6,
+      "title": "Node.js",
+      "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+      "description": "A fast, event-driven JavaScript runtime for building scalable server-side and network applications."
+    },
+    {
+      "id": 7,
+      "title": "Express.js",
+      "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+      "description": "A minimalist Node.js web framework that simplifies the creation of APIs and backend services."
+    },
+    {
+      "id": 8,
+      "title": "MongoDB",
+      "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+      "description": "A flexible NoSQL database that stores data in JSON-like documents, ideal for modern applications."
+    },
+    {
+      "id": 9,
+      "title": "Git",
+      "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+      "description": "A version control system that helps track changes and collaborate on code effectively."
+    },
+    {
+      "id": 10,
+      "title": "Firebase",
+      "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg",
+      "description": "A complete backend solution offering authentication, real-time database, and hosting for web apps."
+    }
+  ]
+  
