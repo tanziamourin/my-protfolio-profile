@@ -1,9 +1,9 @@
-// Login.jsx
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
+import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
@@ -11,45 +11,30 @@ const Login = () => {
 
   const onSubmit = async ({ email, password }) => {
     try {
-      const res = await signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth, email, password);
 
-      const response = await fetch(`http://localhost:5000/api/users/${email}`);
-
-     
-      if (!response.ok) {
-        throw new Error("Failed to fetch user data");
-      }
-
-      const userData = await response.json();
+      const res = await fetch(`http://localhost:5000/api/users/${encodeURIComponent(email)}`);
+      const userData = await res.json();
 
       if (userData.role !== "admin") {
-        Swal.fire({
+        return Swal.fire({
           icon: "error",
           title: "Unauthorized",
-          text: "Only admins can log in!",
+          text: "Only admins can access.",
         });
-        return;
       }
 
-  
-     
-// Login success
-localStorage.setItem("role", userData.role);
+      localStorage.setItem("role", userData.role);
 
-Swal.fire({
-  icon: "success",
-  title: "Login Successful",
-  text: "Welcome admin!",
-}).then(() => {
-  window.location.href = "/dashboard"; // ❗ force reload, context reinitialize
-});
-
-
-
-
-      navigate("/dashboard");
+      Swal.fire({
+        icon: "success",
+        title: "Login Successful",
+        text: "Welcome admin!",
+      }).then(() => {
+        navigate("/dashboard");
+      });
     } catch (error) {
-      console.error("Login error:", error.message);
+      console.error("Login error:", error);
       Swal.fire({
         icon: "error",
         title: "Login Failed",
@@ -59,28 +44,46 @@ Swal.fire({
   };
 
   return (
-    <div className="max-w-md mx-auto mt-20">
-      <h2 className="text-2xl font-bold mb-4">Admin Login</h2>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        <input
-          {...register("email")}
-          type="email"
-          placeholder="Email"
-          className="input input-bordered w-full"
-          required
-        />
-        <input
-          {...register("password")}
-          type="password"
-          placeholder="Password"
-          className="input input-bordered w-full"
-          required
-        />
-        <button type="submit" className="btn btn-primary w-full">
-          Login
-        </button>
-      </form>
-    </div>
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="max-w-md mx-auto mt-24 px-6"
+    >
+      <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl p-8 border border-gray-200 dark:border-gray-700">
+        <h2 className="text-3xl font-extrabold text-center mb-6 text-gray-800 dark:text-white">
+          Admin Login
+        </h2>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+          <div>
+            <label className="block text-gray-700 dark:text-gray-300 mb-1">Email</label>
+            <input
+              {...register("email")}
+              type="email"
+              placeholder="admin@example.com"
+              className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 dark:bg-gray-800 dark:text-white"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-gray-700 dark:text-gray-300 mb-1">Password</label>
+            <input
+              {...register("password")}
+              type="password"
+              placeholder="••••••••"
+              className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 dark:bg-gray-800 dark:text-white"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full py-2 bg-gradient-to-r from-teal-500 to-emerald-500 text-white font-semibold rounded-xl shadow-md hover:scale-105 transition-transform"
+          >
+            Login
+          </button>
+        </form>
+      </div>
+    </motion.div>
   );
 };
 

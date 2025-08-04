@@ -4,6 +4,7 @@ import Particles from "@tsparticles/react";
 import { loadFull } from "tsparticles";
 import TagCloud from "@frank-mayer/react-tag-cloud";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const words = [
   "JavaScript",
@@ -46,6 +47,9 @@ const Skills = () => {
   const accentColor = isDark ? "text-amber-400" : "text-cyan-600";
   const subText = isDark ? "text-gray-300" : "text-gray-700";
   const bgColor = isDark ? "bg-gray-900" : "bg-white";
+    const btnBg = isDark ? "bg-amber-500" : "bg-cyan-600";
+  const btnHover = isDark ? "hover:bg-amber-600" : "hover:bg-cyan-700";
+  const btnText = "text-white";
 
   const particlesInit = async (main) => {
     await loadFull(main);
@@ -140,6 +144,8 @@ const Skills = () => {
             services, or deploying complete applications, I strive to deliver
             high-quality results that meet both user needs and business goals.
           </p>
+
+          <Link to ="skills-and-journey" className={`inline-block px-8 py-3 rounded-full font-semibold shadow-lg transition-colors duration-300 ${btnBg} ${btnText} ${btnHover} hover:scale-105`}> Learn More</Link>
         </motion.div>
 
         {/* Right: Word Cloud */}

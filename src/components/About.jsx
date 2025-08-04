@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom"; // <-- Import Link
 import ThemeContext from "../Context/ThemeContext";
 import AboutImage from "./AboutImages";
 
@@ -53,12 +54,19 @@ const About = () => {
           </p>
 
           <a
-            href="/"
+            href="/files/Tanzia_Chowdhury_CV.pdf" // <-- তোমার CV এর path এখানে বসাবে
             download
             className={`inline-block px-8 py-3 rounded-full font-semibold shadow-lg transition-colors duration-300 ${btnBg} ${btnText} ${btnHover} hover:scale-105`}
           >
             Download My CV
-          </a>
+          </a>{" "}
+        <span className="font-bold px-4 text-2xl">  Or</span>
+          <Link
+            to="/learn-more-about-me"
+            className={`inline-block px-8 py-3 rounded-full font-semibold shadow-lg transition-colors duration-300 ${btnBg} ${btnText} ${btnHover} hover:scale-105`}
+          >
+            Learn More
+          </Link>
         </motion.div>
 
         {/* Right: Image with fancy border and shadow */}
@@ -69,7 +77,7 @@ const About = () => {
           className="md:w-1/2 flex justify-center"
         >
           <div className="relative rounded-3xl shadow-2xl border-2 border-cyan-500 dark:border-amber-500 ">
-            <AboutImage></AboutImage>
+            <AboutImage />
             <div className="absolute -bottom-6 -right-6 w-20 h-20 bg-cyan-500 rounded-full mix-blend-multiply opacity-60 animate-pulse pointer-events-none" />
           </div>
         </motion.div>

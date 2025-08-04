@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import { auth } from "../firebase/firebase.config"; // Must export getAuth(app) from here
+import { auth } from "../firebase/firebase.config";
 
 export const AuthContext = createContext();
 
@@ -9,62 +9,40 @@ const AuthProvider = ({ children }) => {
   const [role, setRole] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Watch Firebase auth state
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      setUser(user);
+      setRole(null);
+      setLoading(true);
+
+      if (user) {
+        try {
+          const res = await fetch(`http://localhost:5000/api/users/${encodeURIComponent(user.email)}`);
+          if (!res.ok) throw new Error("Failed to fetch role");
+          const data = await res.json();
+          setRole(data.role);
+          localStorage.setItem("role", data.role);
+        } catch {
+          setRole("user");
+          localStorage.setItem("role", "user");
+        }
+      } else {
+        localStorage.removeItem("role");
+      }
+
       setLoading(false);
     });
 
     return () => unsubscribe();
   }, []);
 
-  // Fetch user role from backend using email
-useEffect(() => {
-  const fetchRole = async () => {
-    if (!user?.email) return;
-
-    try {
-      const res = await fetch(`http://localhost:5000/api/users/${user.email}`);
-      if (res.ok && res.headers.get("content-type")?.includes("application/json")) {
-        const data = await res.json();
-        const userRole = data.role || "user";
-        setRole(userRole);
-        localStorage.setItem("role", userRole); // ✅ Store in localStorage
-      } else {
-        console.error("Unexpected response:", await res.text());
-        setRole("user");
-        localStorage.setItem("role", "user");
-      }
-    } catch (error) {
-      console.error("Error fetching role:", error);
-      setRole("user");
-      localStorage.setItem("role", "user");
-    }
-  };
-
-  fetchRole();
-}, [user]);
-
-
-  // Logout function
-  // const logout = () => signOut(auth);
-
   const logout = () => {
-  localStorage.removeItem("role");
-  return signOut(auth);
-};
-
-  // Provide everything
-  const authInfo = {
-    user,
-    role,
-    logout,
-    loading,
+    localStorage.removeItem("role");
+    return signOut(auth);
   };
 
   return (
-    <AuthContext.Provider value={authInfo}>
+    <AuthContext.Provider value={{ user, role, loading, logout }}>
       {children}
     </AuthContext.Provider>
   );

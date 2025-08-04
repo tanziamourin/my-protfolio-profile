@@ -6,13 +6,11 @@ import { NavLink } from "react-router-dom";
 import ThemeContext from "../../Context/ThemeContext";
 import { NavbarLogo } from "./NavbarLogo";
 
-
 const navItems = [
-  { id: "home", label: "Home" },
- 
-  { id: "skills", label: "Skills" },
-  { id: "projects", label: "Projects" },
-  { id: "contact", label: "Contact" },
+  { id: "home", label: "Home", path: "/" },
+  { id: "skills", label: "Skills", path: "/skills-and-journey" },
+  { id: "projects", label: "Projects", path: "/projects" },
+  { id: "contact", label: "Contact", path: "/contact" },
 ];
 
 const Navbar = () => {
@@ -62,25 +60,25 @@ const Navbar = () => {
       <nav className="px-8 py-3 rounded-[0.9rem] shadow-sm">
         <div className="flex items-center justify-between max-w-6xl mx-auto">
           <NavbarLogo />
-
-          {/* Desktop Nav */}
+          {/* Desktop Menu: */}
           <div className="items-center hidden gap-6 md:flex">
-            {navItems.map(({id, label  }) => (
-              <a
+            {navItems.map(({ id, label, path }) => (
+              <NavLink
                 key={id}
-                href={`#${id}`}
-                className={`${baseClass} hover:scale-70 ${
-                  activeId === id ? activeClass : ""
-                }`}
+                to={path}
+                className={({ isActive }) =>
+                  `${baseClass} hover:scale-110 ${isActive ? activeClass : ""}`
+                }
               >
                 <span className="text-md">{label}</span>
-              </a>
+              </NavLink>
             ))}
-         
-            {/* ✅ Conditional button */}
+
             <NavLink
               to={isLoggedIn ? "/dashboard" : "/login"}
-              className={`font-semibold ${isDark ? "text-white" : "text-black"}`}
+              className={`font-semibold ${
+                isDark ? "text-white" : "text-black"
+              }`}
             >
               {isLoggedIn ? "Dashboard" : "Login"}
             </NavLink>
@@ -108,19 +106,21 @@ const Navbar = () => {
               transition={{ duration: 0.25 }}
               className={`md:hidden font-semibold mt-4 ${navText} flex flex-col gap-3`}
             >
-              {navItems.map(({ id, label }) => (
-                <a
+              {navItems.map(({ id, label, path }) => (
+                <NavLink
                   key={id}
-                  href={`#${id}`}
+                  to={path}
                   onClick={handleLinkClick}
-                  className={`${baseClass} hover:scale-110 ${
-                    activeId === id ? activeClass : ""
-                  }`}
+                  className={({ isActive }) =>
+                    `${baseClass} hover:scale-110 ${
+                      isActive ? activeClass : ""
+                    }`
+                  }
                 >
                   <span className="text-md">{label}</span>
-                </a>
+                </NavLink>
               ))}
-              {/* ✅ Mobile Login/Dashboard link */}
+
               <NavLink
                 to={isLoggedIn ? "/dashboard" : "/login"}
                 onClick={handleLinkClick}

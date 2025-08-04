@@ -1,13 +1,14 @@
 import { motion } from "framer-motion";
-import { Link } from "react-scroll";
-
+import { Link } from "react-router-dom";
 
 import { TypeAnimation } from "react-type-animation";
 
 import SocialButton from "./ui/SocialButton";
+import { useContext } from "react";
+import ThemeContext from "../Context/ThemeContext";
 
 const Hero = () => {
-  
+  const { isDark } = useContext(ThemeContext);
 
   return (
     <section
@@ -18,14 +19,21 @@ const Hero = () => {
       //   }
     >
       <div className="max-w-4xl mx-auto text-center">
-        <motion.h1
+        <h1 className="text-2xl md:text-5xl font-extrabold leading-tight mb-5 ">  Hi, I'm{" "}</h1>
+        <h1
+          className="text-2xl md:text-5xl pb-5 font-extrabold leading-tight"
+        >
+        
+          < motion.span
           initial={{ opacity: 0, y: -40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="text-4xl md:text-6xl font-extrabold leading-tight"
-        >
-          Hi, I'm{" "}
-          <span className="text-transparent bg-gradient-to-r from-amber-500 via-pink-500 to-teal-500 bg-clip-text">
+            className={`px-2 py-1 rounded-md ${
+              isDark
+                ? "text-white bg-gradient-to-r from-amber-500 via-pink-500 to-teal-500"
+                : "text-black bg-gradient-to-r from-amber-400 via-pink-300 to-teal-300"
+            }`}
+          >
             <TypeAnimation
               sequence={[
                 "Tanzia Mourin",
@@ -39,8 +47,8 @@ const Hero = () => {
               speed={50}
               repeat={Infinity}
             />
-          </span>
-        </motion.h1>
+          </ motion.span>
+        </h1>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -59,15 +67,12 @@ const Hero = () => {
           transition={{ delay: 0.9, duration: 0.6 }}
           className="mt-8 flex justify-center gap-6 flex-wrap"
         >
-          <Link
-            to="projects"
-            smooth={true}
-            duration={500}
-            offset={-70}
-            className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-teal-500 to-emerald-500 text-white rounded-lg text-lg font-semibold shadow-lg hover:scale-105 transition-transform cursor-pointer"
-          >
-            View Projects 
-          </Link>
+        <Link
+  to="/projects"
+  className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-teal-500 to-emerald-500 text-white rounded-lg text-lg font-semibold shadow-lg hover:scale-105 transition-transform cursor-pointer"
+>
+  View Projects
+</Link>
         </motion.div>
 
         {/* Contact Icons */}
