@@ -53,20 +53,26 @@ const About = () => {
             seamless UX and scalable backend architecture.
           </p>
 
-          <a
-            href="/files/Tanzia_Chowdhury_CV.pdf" // <-- তোমার CV এর path এখানে বসাবে
-            download
-            className={`inline-block px-8 py-3 rounded-full font-semibold shadow-lg transition-colors duration-300 ${btnBg} ${btnText} ${btnHover} hover:scale-105`}
-          >
-            Download My CV
-          </a>{" "}
-        <span className="font-bold px-4 text-2xl">  Or</span>
-          <Link
-            to="/learn-more-about-me"
-            className={`inline-block px-8 py-3 rounded-full font-semibold shadow-lg transition-colors duration-300 ${btnBg} ${btnText} ${btnHover} hover:scale-105`}
-          >
-            Learn More
-          </Link>
+          <div className="flex flex-wrap items-center gap-4">
+            <a
+              href="/files/Tanzia_Chowdhury_CV.pdf"
+              download
+              className={`inline-block sm:px-8 px-5 sm:py-3 py-2 rounded-full font-semibold shadow-lg transition-colors duration-300 ${btnBg} ${btnText} ${btnHover} hover:scale-105`}
+            >
+              Download My CV
+            </a>
+
+            <span className={`font-bold text-xl sm:text-2xl ${textColor}`}>
+              or
+            </span>
+
+            <Link
+              to="/learn-more-about-me"
+              className={`inline-block sm:px-8 px-5 sm:py-3 py-2 rounded-full font-semibold shadow-lg transition-colors duration-300 ${btnBg} ${btnText} ${btnHover} hover:scale-105`}
+            >
+              Learn More
+            </Link>
+          </div>
         </motion.div>
 
         {/* Right: Image with fancy border and shadow */}

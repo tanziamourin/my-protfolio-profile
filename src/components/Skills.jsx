@@ -47,7 +47,7 @@ const Skills = () => {
   const accentColor = isDark ? "text-amber-400" : "text-cyan-600";
   const subText = isDark ? "text-gray-300" : "text-gray-700";
   const bgColor = isDark ? "bg-gray-900" : "bg-white";
-    const btnBg = isDark ? "bg-amber-500" : "bg-cyan-600";
+  const btnBg = isDark ? "bg-amber-500" : "bg-cyan-600";
   const btnHover = isDark ? "hover:bg-amber-600" : "hover:bg-cyan-700";
   const btnText = "text-white";
 
@@ -128,24 +128,32 @@ const Skills = () => {
           </h2>
 
           <p className={`mb-6 leading-relaxed text-base sm:text-lg ${subText}`}>
-            As a full-stack developer with a focus on modern web technologies, I
-            enjoy transforming ideas into user-friendly digital experiences. My
-            work blends logic with creativity, ensuring both functionality and
-            aesthetics are balanced.
+            I’m a modern{" "}
+            <span className="font-semibold">MERN Stack Developer</span>{" "}
+            (MongoDB, Express.js, React, Node.js) passionate about building
+            scalable and intuitive web applications.
             <br />
             <br />
-            I specialize in building dynamic web applications from scratch —
-            from designing clean interfaces to architecting robust backend
-            systems. I take pride in writing maintainable code, optimizing
-            performance, and ensuring smooth user interactions.
+            My development philosophy blends clean UI/UX with powerful backend
+            logic. I design responsive, performant frontends using React and
+            Tailwind, and build RESTful APIs with Node.js and Express.
             <br />
             <br />
-            Whether it’s developing scalable APIs, integrating third-party
-            services, or deploying complete applications, I strive to deliver
-            high-quality results that meet both user needs and business goals.
+            From user authentication and secure payments to dashboard analytics
+            and admin panels, I enjoy crafting full-featured applications that
+            solve real-world problems.
+            <br />
+            <br />I write clean, maintainable code, follow best practices, and
+            always stay updated with the latest technologies to deliver
+            high-quality, production-ready solutions.
           </p>
 
-          <Link to ="skills-and-journey" className={`inline-block px-8 py-3 rounded-full font-semibold shadow-lg transition-colors duration-300 ${btnBg} ${btnText} ${btnHover} hover:scale-105`}> Learn More</Link>
+          <Link
+            to="skills-and-journey"
+            className={`inline-block px-8 py-3 rounded-full font-semibold shadow-lg transition-colors duration-300 ${btnBg} ${btnText} ${btnHover} hover:scale-105`}
+          >
+            Learn More
+          </Link>
         </motion.div>
 
         {/* Right: Word Cloud */}

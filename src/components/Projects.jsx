@@ -1,6 +1,11 @@
 import { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import { FaGithub, FaPlayCircle, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import {
+  FaGithub,
+  FaPlayCircle,
+  FaChevronLeft,
+  FaChevronRight,
+} from "react-icons/fa";
 import ThemeContext from "../Context/ThemeContext";
 import { motion } from "framer-motion";
 
@@ -8,7 +13,8 @@ const Projects = () => {
   const [projects, setProjects] = useState([]);
   const [imageIndexes, setImageIndexes] = useState({});
   const { isDark } = useContext(ThemeContext);
-    const btnBg = isDark ? "bg-amber-500" : "bg-cyan-600";
+
+  const btnBg = isDark ? "bg-amber-500" : "bg-cyan-600";
   const btnHover = isDark ? "hover:bg-amber-600" : "hover:bg-cyan-700";
   const btnText = "text-white";
 
@@ -17,7 +23,6 @@ const Projects = () => {
       .get("http://localhost:5000/api/projects")
       .then((res) => {
         setProjects(res.data);
-        // Initialize each image index to 0
         const indexes = {};
         res.data.forEach((project) => {
           indexes[project._id] = 0;
@@ -50,13 +55,9 @@ const Projects = () => {
   return (
     <section className="py-24 px-6 sm:px-12 md:px-20 relative overflow-hidden">
       <div className="relative z-10 max-w-7xl mx-auto">
-      
-
-         <h2
-            className={`text-4xl sm:text-5xl text-center font-extrabold mb-6 ${textColor}`}
-          >
-             My <span className={accentColor}>Projects</span>
-          </h2>
+        <h2 className={`text-4xl sm:text-5xl text-center font-extrabold mb-6 ${textColor}`}>
+          My <span className={accentColor}>Projects</span>
+        </h2>
         <p className={`text-center ${textColor} opacity-90 mb-16 text-lg`}>
           A collection of projects that showcase my skills and passion for
           building modern web applications.
@@ -70,9 +71,9 @@ const Projects = () => {
             return (
               <div
                 key={project._id}
-                className={`grid grid-cols-8 gap-10 p-10 relative items-start rounded-3xl overflow-hidden border ${borderColor} shadow-lg ${shadowColor} ${bgColor}`}
+                className={`grid grid-cols-1 md:grid-cols-8 gap-6 md:gap-10 p-6 md:p-10 rounded-3xl border ${borderColor} shadow-lg ${shadowColor} ${bgColor} relative`}
               >
-                {/* Animated Background */}
+                {/* Animated background lights */}
                 <motion.div
                   className="absolute -top-10 -right-10 w-48 h-48 bg-gradient-to-tr from-cyan-400 to-blue-600 rounded-full opacity-20 blur-3xl pointer-events-none"
                   animate={{ rotate: 360 }}
@@ -84,24 +85,24 @@ const Projects = () => {
                   transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
                 />
 
-                {/* Image with navigation */}
-                <div className="col-span-3  relative h-80 overflow-hidden">
+                {/* Image Section */}
+                <div className="md:col-span-3 relative h-64 md:h-80 w-full overflow-hidden rounded-2xl">
                   <img
                     src={images[currentIndex]}
                     alt={project.title}
-                    className="w-full h-full  object-cover rounded-l-3xl"
+                    className="w-full h-full object-cover rounded-2xl"
                   />
                   {images.length > 1 && (
                     <>
                       <button
                         onClick={() => handlePrev(project._id, images.length)}
-                        className="absolute top-1/2 left-3 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
+                        className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
                       >
                         <FaChevronLeft />
                       </button>
                       <button
                         onClick={() => handleNext(project._id, images.length)}
-                        className="absolute top-1/2 right-3 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
+                        className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
                       >
                         <FaChevronRight />
                       </button>
@@ -109,46 +110,41 @@ const Projects = () => {
                   )}
                 </div>
 
-                {/* Details */}
-                <div className="w-full col-span-5 p-6 flex flex-col gap-4">
-                  <div className="flex items-center gap-2">
+                {/* Details Section */}
+                <div className="md:col-span-5 flex flex-col justify-between gap-4 mt-4 md:mt-0">
+                  <div>
                     <h3 className={`text-2xl font-bold ${accentColor}`}>
                       {project.title}
                     </h3>
                     {project.days && (
-                      <span className="text-sm text-gray-500">
-                        {project.days} days
-                      </span>
+                      <p className="text-sm text-gray-500 mb-2">{project.days} days</p>
+                    )}
+                    <p className={`text-sm ${textColor} opacity-90 mb-4`}>
+                      {project.features}
+                    </p>
+                    {project.keywords && Array.isArray(project.keywords) && (
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {project.keywords.map((keyword, i) => (
+                          <span
+                            key={i}
+                            className="bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 px-3 py-1 text-sm rounded-full shadow-sm"
+                          >
+                            {keyword}
+                          </span>
+                        ))}
+                      </div>
                     )}
                   </div>
 
-                  <p className={`text-sm ${textColor} opacity-90`}>
-                    {project.features}
-                  </p>
-
-                  {project.keywords && Array.isArray(project.keywords) && (
-                    <div className="flex flex-wrap gap-2 mt-2">
-                      {project.keywords.map((keyword, i) => (
-                        <span
-                          key={i}
-                          className="bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 px-3 py-1 text-sm rounded-full shadow-sm"
-                        >
-                          {keyword}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* Buttons */}
-                  <div className="mt-4 flex flex-wrap gap-3">
+                  <div className="flex flex-wrap gap-3">
                     {project.live && (
                       <a
                         href={project.live}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={` px-4 py-3 flex gap-2 rounded-sm font-semibold shadow-lg transition-colors duration-300 ${btnBg} ${btnText} ${btnHover} hover:scale-105`}
+                        className={`px-4 py-3 flex gap-2 rounded-lg font-semibold shadow-lg transition-all duration-300 ${btnBg} ${btnText} ${btnHover} hover:scale-105`}
                       >
-                        <FaPlayCircle  className="mt-1"/> Live Preview
+                        <FaPlayCircle className="mt-1" /> Live Preview
                       </a>
                     )}
                     {project.clientRepo && (
@@ -183,10 +179,3 @@ const Projects = () => {
 };
 
 export default Projects;
-
-
-
-
-
-
-

@@ -64,7 +64,7 @@ const ContactSection = () => {
 
   {/* GitHub */}
   <a
-    href="https://github.com/your-github-username"
+    href="https://github.com/tanziamourin"
     target="_blank"
     rel="noopener noreferrer"
     className="flex items-center gap-3 hover:underline"
@@ -75,7 +75,7 @@ const ContactSection = () => {
 
   {/* LinkedIn */}
   <a
-    href="https://www.linkedin.com/in/your-linkedin-id"
+    href="https://www.linkedin.com/in/tanzia-mourin-chowdhury-5699a02b6/"
     target="_blank"
     rel="noopener noreferrer"
     className="flex items-center gap-3 hover:underline"
@@ -86,7 +86,7 @@ const ContactSection = () => {
 
   {/* Freelancer */}
   <a
-    href="https://www.freelancer.com/u/your-freelancer-id"
+    href="https://www.freelancer.com.bd/u/tanziamourin21"
     target="_blank"
     rel="noopener noreferrer"
     className="flex items-center gap-3 hover:underline"

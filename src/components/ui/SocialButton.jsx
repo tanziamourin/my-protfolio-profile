@@ -9,11 +9,10 @@ import {
 } from "react-icons/fa";
 
 const SOCIAL_LINKS = {
-  facebook: "https://facebook.com/",
-  twitter: "https://twitter.com/",
-  instagram: "https://instagram.com/",
-  linkedin: "https://linkedin.com/",
-  github: "https://github.com/",
+  facebook: "https://web.facebook.com/tanziamourinchowdhury",
+  instagram: "https://www.instagram.com/tanzia_mourin_chowdhury/",
+  linkedin: "https://www.linkedin.com/in/tanzia-mourin-chowdhury-5699a02b6/",
+  github: "https://github.com/tanziamourin",
 };
 
 const SocialButton = () => {
