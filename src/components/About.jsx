@@ -55,7 +55,7 @@ const About = () => {
 
           <div className="flex flex-wrap items-center gap-4">
             <a
-              href="/files/tanzia-mourin-CV.pdf"
+              href="/public/tanzia-mourin-CV.pdf"
               download
               className={`inline-block sm:px-8 px-5 sm:py-3 py-2 rounded-full font-semibold shadow-lg transition-colors duration-300 ${btnBg} ${btnText} ${btnHover} hover:scale-105`}
             >
