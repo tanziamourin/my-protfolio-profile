@@ -61,7 +61,7 @@ const About = () => {
             >
               Download My CV
             </a>
-            ppp
+           
 
             <span className={`font-bold text-xl sm:text-2xl ${textColor}`}>
               or
