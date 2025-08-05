@@ -20,7 +20,7 @@ const Projects = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/projects")
+      .get("https://my-protfolio-profile-server.vercel.app/api/projects")
       .then((res) => {
         setProjects(res.data);
         const indexes = {};

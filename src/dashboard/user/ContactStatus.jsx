@@ -5,7 +5,7 @@ const ContactStatus = () => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/contacts/user/${email}`)
+    fetch(`https://my-protfolio-profile-server.vercel.app/api/contacts/user/${email}`)
       .then(res => res.json())
       .then(data => setMessages(data));
   }, [email]);

@@ -19,7 +19,7 @@ const ProjectUpload = () => {
       data.keywords = data.keywords.split(",").map((k) => k.trim());
       data.images = data.images.filter((img) => img.trim() !== ""); // remove empty URLs
 
-      await axios.post("http://localhost:5000/api/projects", data);
+      await axios.post("https://my-protfolio-profile-server.vercel.app/api/projects", data);
       Swal.fire("Uploaded!", "Project added successfully", "success");
       reset();
     } catch (err) {

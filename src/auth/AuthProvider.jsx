@@ -17,7 +17,7 @@ const AuthProvider = ({ children }) => {
 
       if (user) {
         try {
-          const res = await fetch(`http://localhost:5000/api/users/${encodeURIComponent(user.email)}`);
+          const res = await fetch(`https://my-protfolio-profile-server.vercel.app/api/users/${encodeURIComponent(user.email)}`);
           if (!res.ok) throw new Error("Failed to fetch role");
           const data = await res.json();
           setRole(data.role);

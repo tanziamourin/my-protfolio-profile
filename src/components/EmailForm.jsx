@@ -28,7 +28,7 @@ const EmailForm = () => {
       );
 
       // ✅ Backend এ POST করো
-      await fetch("http://localhost:5000/api/messages", {
+      await fetch("https://my-protfolio-profile-server.vercel.app/api/messages", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

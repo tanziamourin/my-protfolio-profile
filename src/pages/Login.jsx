@@ -13,7 +13,7 @@ const Login = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
 
-      const res = await fetch(`http://localhost:5000/api/users/${encodeURIComponent(email)}`);
+      const res = await fetch(`https://my-protfolio-profile-server.vercel.app/api/users/${encodeURIComponent(email)}`);
       const userData = await res.json();
 
       if (userData.role !== "admin") {
