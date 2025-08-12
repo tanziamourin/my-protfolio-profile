@@ -39,7 +39,7 @@ const ContactSection = () => {
         >
           <div>
             <p className={`text-sm ${accentColor}font-medium mb-2`}>Get in Touch</p>
-            <h2 className="text-4xl font-extrabold text-gray-900 dark:text-white leading-tight">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white leading-tight">
               Let’s Work on <br />
               <span className={` italic ${accentColor}`}>Your Next Project</span>
             </h2>
@@ -51,7 +51,7 @@ const ContactSection = () => {
 <div className="space-y-4 text-gray-700 dark:text-gray-300">
   <div className="flex items-center gap-3">
     <FiPhone className={`text-lg ${accentColor}`} />
-    <span>+8801*****</span>
+    <span>+8801732445603</span>
   </div>
   <div className="flex items-center gap-3">
     <FiMail className={`text-lg ${accentColor}`} />
@@ -75,7 +75,7 @@ const ContactSection = () => {
 
   {/* LinkedIn */}
   <a
-    href="https://www.linkedin.com/in/tanzia-mourin-chowdhury-5699a02b6/"
+    href="https://www.linkedin.com/in/tanzia-mourin-chowdhury"
     target="_blank"
     rel="noopener noreferrer"
     className="flex items-center gap-3 hover:underline"

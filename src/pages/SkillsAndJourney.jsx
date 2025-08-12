@@ -52,7 +52,6 @@ const skills = [
   },
 ];
 
-
 const SkillsAndJourney = () => {
   const { isDark } = useContext(ThemeContext);
 
@@ -65,15 +64,15 @@ const SkillsAndJourney = () => {
     : "shadow-md shadow-gray-300";
 
   return (
-    <section className={` py-20 px-5 sm:px-10`}>
+    <section className={` py-20  max-w-7xl mx-auto px-10  lg:px-2 md:px-10`}>
       <h2
-        className={`text-4xl sm:text-5xl font-extrabold text-center mb-15 ${textColor}`}
+        className={`lg:text-5xl text-4xl sm:px-2 font-extrabold text-center mb-15 ${textColor}`}
       >
-        Technologies I’ve <span className={accentColor}> Mastered</span>
+        Tech Stack &  <span className={accentColor}> Tools</span>
       </h2>
 
       {/* Skills */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8  mx-auto">
         {skills.map((group, idx) => (
           <motion.div
             key={idx}
@@ -83,26 +82,48 @@ const SkillsAndJourney = () => {
             className={`${cardBg} ${textColor} rounded-2xl p-6 ${shadow} hover:scale-[1.03] transition-transform duration-300`}
           >
             <div
-              className={`flex items-center gap-3 text-xl font-semibold mb-5 ${accentColor}`}
+              className={`flex items-center gap-3 text-xl font-semibold mb-3 ${accentColor}`}
             >
               <span className="text-3xl">{group.icon}</span>
               <span>{group.category}</span>
             </div>
 
-            <ul className="space-y-4">
+            <ul className="space-y-1.5">
               {group.list.map((item, i) => (
-                <li key={i}>
-                  <div className="flex justify-between text-sm font-medium mb-1">
-                    <span>{item.name}</span>
-                    <span>{item.value}%</span>
+                <li key={i} className="flex items-center gap-4">
+                  <div className="flex-grow">
+                    <span className="text-sm font-medium">{item.name}</span>
                   </div>
-                  <div className="w-full h-2 rounded-full bg-gray-700 dark:bg-gray-600">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: `${item.value}%` }}
-                      transition={{ duration: 1.3 }}
-                      className="h-2 rounded-full bg-gradient-to-r from-amber-400 to-cyan-400 shadow"
-                    />
+                  <div className="w-10 h-8 relative">
+                    <svg viewBox="0 0 36 36" className="w-full h-full">
+                      <circle
+                        className="text-gray-700 dark:text-gray-600"
+                        strokeWidth="4"
+                        stroke="currentColor"
+                        fill="none"
+                        cx="18"
+                        cy="18"
+                        r="16"
+                      />
+                      <motion.circle
+                        className="text-cyan-400 dark:text-amber-400"
+                        strokeWidth="4"
+                        stroke="currentColor"
+                        fill="none"
+                        cx="18"
+                        cy="18"
+                        r="16"
+                        strokeDasharray="100"
+                        strokeDashoffset="100"
+                        initial={{ strokeDashoffset: 100 }}
+                        animate={{ strokeDashoffset: 100 - item.value }}
+                        transition={{ duration: 1.5, ease: "easeOut" }}
+                        style={{ strokeLinecap: "round" }}
+                      />
+                    </svg>
+                    <div className="absolute inset-0  flex items-center justify-center text-xs font-semibold text-gray-800 dark:text-gray-200">
+                      {item.value}%
+                    </div>
                   </div>
                 </li>
               ))}
@@ -123,7 +144,6 @@ const SkillsAndJourney = () => {
           Continuously expanding my skillset ...
         </span>
       </div>
-   
     </section>
   );
 };

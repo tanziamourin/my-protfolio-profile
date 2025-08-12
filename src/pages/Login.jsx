@@ -51,7 +51,7 @@ const Login = () => {
       className="max-w-md mx-auto mt-24 px-6"
     >
       <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl p-8 border border-gray-200 dark:border-gray-700">
-        <h2 className="text-3xl font-extrabold text-center mb-6 text-gray-800 dark:text-white">
+        <h2 className="text-4xl font-extrabold text-center mb-6 text-gray-800 dark:text-white">
           Admin Login
         </h2>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">

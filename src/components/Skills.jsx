@@ -4,7 +4,7 @@ import Particles from "@tsparticles/react";
 import { loadFull } from "tsparticles";
 import TagCloud from "@frank-mayer/react-tag-cloud";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import SkillsAndJourney from "../pages/SkillsAndJourney";
 
 const words = [
   "JavaScript",
@@ -42,64 +42,17 @@ const words = [
 
 const Skills = () => {
   const { isDark } = useContext(ThemeContext);
-
-  const textColor = isDark ? "text-gray-200" : "text-gray-800";
-  const accentColor = isDark ? "text-amber-400" : "text-cyan-600";
-  const subText = isDark ? "text-gray-300" : "text-gray-700";
   const bgColor = isDark ? "bg-gray-900" : "bg-white";
-  const btnBg = isDark ? "bg-amber-500" : "bg-cyan-600";
-  const btnHover = isDark ? "hover:bg-amber-600" : "hover:bg-cyan-700";
-  const btnText = "text-white";
+  const accentColor = isDark ? "text-amber-400" : "text-cyan-600";
 
-  const particlesInit = async (main) => {
-    await loadFull(main);
-  };
+  
 
   return (
     <section
       id="skills"
-      className={`py-16 px-5 sm:px-10 md:px-16 my-20 rounded-3xl max-w-7xl mx-auto relative overflow-hidden ${bgColor}`}
+      className={`py-5 sm:px-10 md:px-5 my-20 rounded-3xl max-w-7xl mx-auto relative overflow-hidden ${bgColor}`}
     >
-      {/* Background Particles */}
-      <Particles
-        id="particles"
-        init={particlesInit}
-        options={{
-          background: { color: { value: isDark ? "#0f172a" : "#f8fafc" } },
-          fpsLimit: 60,
-          interactivity: {
-            events: {
-              onHover: { enable: true, mode: "repulse" },
-              resize: true,
-            },
-            modes: {
-              repulse: { distance: 100, duration: 0.4 },
-            },
-          },
-          particles: {
-            color: { value: "#00ffff" },
-            links: {
-              color: "#00ffff",
-              distance: 100,
-              enable: true,
-              opacity: 0.2,
-              width: 1,
-            },
-            move: {
-              enable: true,
-              speed: 0.6,
-              direction: "none",
-              outModes: "bounce",
-            },
-            number: { value: 40 },
-            opacity: { value: 0.3 },
-            shape: { type: "circle" },
-            size: { value: { min: 1, max: 3 } },
-          },
-          detectRetina: true,
-        }}
-        className="absolute inset-0 -z-10"
-      />
+ 
 
       {/* Background Glows */}
       <motion.div
@@ -113,51 +66,17 @@ const Skills = () => {
         transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
       />
 
+     
+
       {/* Content */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start relative z-10">
-        {/* Left Text */}
-        <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <h2
-            className={`text-4xl sm:text-5xl font-extrabold mb-6 ${textColor}`}
-          >
-            Skills & <span className={accentColor}>Experience</span>
-          </h2>
+      <div className=" grid grid-cols-1 lg:grid-cols-2 relative z-10">
+        {/* Left: SkillsAndJourney */}
+        <div className="">
+          <SkillsAndJourney />
+        </div>
 
-          <p className={`mb-6 leading-relaxed text-base sm:text-lg ${subText}`}>
-            I’m a modern{" "}
-            <span className="font-semibold">MERN Stack Developer</span>{" "}
-            (MongoDB, Express.js, React, Node.js) passionate about building
-            scalable and intuitive web applications.
-            <br />
-            <br />
-            My development philosophy blends clean UI/UX with powerful backend
-            logic. I design responsive, performant frontends using React and
-            Tailwind, and build RESTful APIs with Node.js and Express.
-            <br />
-            <br />
-            From user authentication and secure payments to dashboard analytics
-            and admin panels, I enjoy crafting full-featured applications that
-            solve real-world problems.
-            <br />
-            <br />I write clean, maintainable code, follow best practices, and
-            always stay updated with the latest technologies to deliver
-            high-quality, production-ready solutions.
-          </p>
-
-          <Link
-            to="skills-and-journey"
-            className={`inline-block px-8 py-3 rounded-full font-semibold shadow-lg transition-colors duration-300 ${btnBg} ${btnText} ${btnHover} hover:scale-105`}
-          >
-            Learn More
-          </Link>
-        </motion.div>
-
-        {/* Right: Word Cloud */}
-        <motion.div
+            {/* Right: Word Cloud */}
+        {/* <motion.div
           initial={{ opacity: 0, scale: 0.85 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
@@ -176,7 +95,7 @@ const Skills = () => {
           >
             {words}
           </TagCloud>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );

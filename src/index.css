@@ -8,8 +8,9 @@
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
  *{
-  font-style: italic;
-  font-family: serif;
+  /* font-style: italic; */
+  font-family:serif;
+
  }
 html {
   scroll-behavior: smooth;

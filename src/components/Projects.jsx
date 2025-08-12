@@ -1,177 +1,93 @@
 import { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import {
-  FaGithub,
-  FaPlayCircle,
-  FaChevronLeft,
-  FaChevronRight,
-} from "react-icons/fa";
-import ThemeContext from "../Context/ThemeContext";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import ThemeContext from "../Context/ThemeContext";
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
-  const [imageIndexes, setImageIndexes] = useState({});
   const { isDark } = useContext(ThemeContext);
-
-  const btnBg = isDark ? "bg-amber-500" : "bg-cyan-600";
-  const btnHover = isDark ? "hover:bg-amber-600" : "hover:bg-cyan-700";
-  const btnText = "text-white";
 
   useEffect(() => {
     axios
       .get("https://my-protfolio-profile-server.vercel.app/api/projects")
-      .then((res) => {
-        setProjects(res.data);
-        const indexes = {};
-        res.data.forEach((project) => {
-          indexes[project._id] = 0;
-        });
-        setImageIndexes(indexes);
-      })
+      .then((res) => setProjects(res.data))
       .catch((err) => console.error("Failed to fetch projects", err));
   }, []);
 
-  const handlePrev = (id, totalImages) => {
-    setImageIndexes((prev) => ({
-      ...prev,
-      [id]: (prev[id] - 1 + totalImages) % totalImages,
-    }));
-  };
-
-  const handleNext = (id, totalImages) => {
-    setImageIndexes((prev) => ({
-      ...prev,
-      [id]: (prev[id] + 1) % totalImages,
-    }));
-  };
-
-  const bgColor = isDark ? "bg-gray-900" : "bg-white";
-  const textColor = isDark ? "text-gray-200" : "text-gray-800";
-  const accentColor = isDark ? "text-amber-400" : "text-cyan-600";
-  const borderColor = isDark ? "border-amber-500" : "border-cyan-500";
-  const shadowColor = isDark ? "shadow-amber-800" : "shadow-cyan-300";
-
   return (
-    <section className="py-24 px-6 sm:px-12 md:px-20 relative overflow-hidden">
-      <div className="relative z-10 max-w-7xl mx-auto">
-        <h2 className={`text-4xl sm:text-5xl text-center font-extrabold mb-6 ${textColor}`}>
-          My <span className={accentColor}>Projects</span>
+    <section className="py-20 px-6 sm:px-12 md:px-20 relative">
+      <div className="max-w-7xl mx-auto">
+        {/* Section Heading */}
+        <h2
+          className={`md:text-5xl text-4xl font-bold text-center mb-16 ${
+            isDark ? "text-gray-200" : "text-gray-800"
+          }`}
+        >
+          My{" "}
+          <span className={isDark ? "text-amber-400" : "text-cyan-600"}>
+            Projects
+          </span>
         </h2>
-        <p className={`text-center ${textColor} opacity-90 mb-16 text-lg`}>
-          A collection of projects that showcase my skills and passion for
-          building modern web applications.
-        </p>
 
-        <div className="space-y-20">
-          {projects.map((project) => {
-            const currentIndex = imageIndexes[project._id] || 0;
-            const images = Array.isArray(project.images) ? project.images : [project.image];
-
-            return (
-              <div
-                key={project._id}
-                className={`grid grid-cols-1 md:grid-cols-8 gap-6 md:gap-10 p-6 md:p-10 rounded-3xl border ${borderColor} shadow-lg ${shadowColor} ${bgColor} relative`}
-              >
-                {/* Animated background lights */}
-                <motion.div
-                  className="absolute -top-10 -right-10 w-48 h-48 bg-gradient-to-tr from-cyan-400 to-blue-600 rounded-full opacity-20 blur-3xl pointer-events-none"
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-3 gap-10">
+          {projects.map((project, index) => (
+            <motion.div
+              key={project._id}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className={`relative pb-10 rounded-2xl overflow-hidden group transform transition-all duration-500 hover:scale-[1.02] ${
+                isDark
+                  ? "bg-white/5 border border-white/10"
+                  : "bg-white border border-gray-200"
+              } shadow-lg hover:shadow-2xl backdrop-blur-lg`}
+            >
+              {/* Image with Overlay */}
+              <div className="relative h-100% w-full overflow-hidden">
+                <img
+                  src={
+                    Array.isArray(project.images)
+                      ? project.images[0]
+                      : project.image
+                  }
+                  alt={project.title}
+                  className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
                 />
-                <motion.div
-                  className="absolute -bottom-10 -left-10 w-40 h-40 bg-gradient-to-tr from-amber-400 to-red-500 rounded-full opacity-20 blur-3xl pointer-events-none"
-                  animate={{ rotate: -360 }}
-                  transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
-                />
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 pointer-events-none"></div>
+              </div>
 
-                {/* Image Section */}
-                <div className="md:col-span-3 relative h-64 md:h-80 w-full overflow-hidden rounded-2xl">
-                  <img
-                    src={images[currentIndex]}
-                    alt={project.title}
-                    className="w-full h-full object-cover rounded-2xl"
-                  />
-                  {images.length > 1 && (
-                    <>
-                      <button
-                        onClick={() => handlePrev(project._id, images.length)}
-                        className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
-                      >
-                        <FaChevronLeft />
-                      </button>
-                      <button
-                        onClick={() => handleNext(project._id, images.length)}
-                        className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
-                      >
-                        <FaChevronRight />
-                      </button>
-                    </>
-                  )}
-                </div>
+              {/* Content Box */}
+              <div className="p-6">
+                <h3
+                  className={`text-xl font-bold mb-2 ${
+                    isDark ? "text-white" : "text-gray-800"
+                  }`}
+                >
+                  {project.title}
+                </h3>
+              
 
-                {/* Details Section */}
-                <div className="md:col-span-5 flex flex-col justify-between gap-4 mt-4 md:mt-0">
-                  <div>
-                    <h3 className={`text-2xl font-bold ${accentColor}`}>
-                      {project.title}
-                    </h3>
-                    {project.days && (
-                      <p className="text-sm text-gray-500 mb-2">{project.days} days</p>
-                    )}
-                    <p className={`text-sm ${textColor} opacity-90 mb-4`}>
-                      {project.features}
-                    </p>
-                    {project.keywords && Array.isArray(project.keywords) && (
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {project.keywords.map((keyword, i) => (
-                          <span
-                            key={i}
-                            className="bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 px-3 py-1 text-sm rounded-full shadow-sm"
-                          >
-                            {keyword}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
+                {/* Buttons */}
+                <div className="flex flex-wrap gap-3">
+                  <Link
+                    to={`/projects/${project._id}`}
+                    className={`px-4 py-2 rounded-lg text-sm font-medium shadow-md transition-all duration-300 ${
+                      isDark
+                        ? "bg-amber-500 hover:bg-amber-600"
+                        : "bg-cyan-600 hover:bg-cyan-700"
+                    } text-white`}
+                  >
+                    Know More
+                  </Link>
 
-                  <div className="flex flex-wrap gap-3">
-                    {project.live && (
-                      <a
-                        href={project.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`px-4 py-3 flex gap-2 rounded-lg font-semibold shadow-lg transition-all duration-300 ${btnBg} ${btnText} ${btnHover} hover:scale-105`}
-                      >
-                        <FaPlayCircle className="mt-1" /> Live Preview
-                      </a>
-                    )}
-                    {project.clientRepo && (
-                      <a
-                        href={project.clientRepo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 bg-white border border-yellow-500 text-yellow-600 px-4 py-2 rounded-lg hover:bg-yellow-100 transition"
-                      >
-                        <FaGithub /> Client Repo
-                      </a>
-                    )}
-                    {project.serverRepo && (
-                      <a
-                        href={project.serverRepo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 bg-white border border-yellow-500 text-yellow-600 px-4 py-2 rounded-lg hover:bg-yellow-100 transition"
-                      >
-                        <FaGithub /> Server Repo
-                      </a>
-                    )}
-                  </div>
                 </div>
               </div>
-            );
-          })}
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

@@ -6,7 +6,6 @@ import ThemeContext from "../Context/ThemeContext";
 const AboutImages = () => {
   const { isDark } = useContext(ThemeContext);
 
-
   const borderColor = isDark ? "border-amber-500" : "border-cyan-500";
 
   return (
@@ -19,7 +18,7 @@ const AboutImages = () => {
         <div className="relative w-full max-w-sm h-[320px] md:w-[300px] md:h-[300px] mx-auto">
           {/* Image 1 */}
           <motion.img
-            src="https://i.ibb.co/G4LfdWv0/Minimalist-Simple-Beauty-Photo-Collage-Instagram-Post-1.png"
+            src="https://i.ibb.co/kVwX7ZzV/Whats-App-Image-2025-06-25-at-11-47-06-c24bd1b9.jpg"
             alt="About Image 1"
             className={`w-[250px] h-[250px] md:w-[280px] md:h-[240px] object-cover rounded-lg  shadow-lg md:absolute border-4 ${borderColor} z-20
               bottom-20 right-6 md:bottom-20 md:right-20
@@ -31,13 +30,18 @@ const AboutImages = () => {
 
           {/* Image 2 */}
           <motion.img
-            src="https://i.ibb.co/kVwX7ZzV/Whats-App-Image-2025-06-25-at-11-47-06-c24bd1b9.jpg"
+            src="https://i.ibb.co.com/KjVtxhQ5/Whats-App-Image-2025-08-12-at-12-07-41-8b73bb01.jpg"
             alt="About Image 2"
             className={`w-[250px] h-[250px] md:w-[280px] md:h-[240px] object-cover rounded-lg shadow-lg absolute border-4 ${borderColor} z-20
               top-25 left-6 md:top-30 md:left-10
             `}
             whileInView={{ x: [0, 30, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1,
+            }}
             viewport={{ once: false, amount: 0.5 }}
           />
         </div>

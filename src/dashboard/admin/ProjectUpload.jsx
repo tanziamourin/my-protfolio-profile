@@ -16,8 +16,13 @@ const ProjectUpload = () => {
 
   const onSubmit = async (data) => {
     try {
-      data.keywords = data.keywords.split(",").map((k) => k.trim());
-      data.images = data.images.filter((img) => img.trim() !== ""); // remove empty URLs
+      // Convert keywords into an array
+      data.keywords = data.keywords
+        ? data.keywords.split(",").map((k) => k.trim())
+        : [];
+
+      // Remove empty image URLs
+      data.images = data.images.filter((img) => img.trim() !== "");
 
       await axios.post("https://my-protfolio-profile-server.vercel.app/api/projects", data);
       Swal.fire("Uploaded!", "Project added successfully", "success");
@@ -29,10 +34,11 @@ const ProjectUpload = () => {
   };
 
   return (
-    <div className="p-6">
+    <div className="p-6 max-w-2xl mx-auto">
       <h2 className="text-2xl font-bold mb-4">Upload New Project</h2>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 max-w-xl">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        {/* Project Title */}
         <input
           type="text"
           placeholder="Project Title"
@@ -40,7 +46,7 @@ const ProjectUpload = () => {
           className="input input-bordered w-full"
         />
 
-        {/* Image Fields */}
+        {/* Image URLs */}
         <div>
           <p className="font-medium mb-1">Image URLs</p>
           {fields.map((field, index) => (
@@ -69,6 +75,7 @@ const ProjectUpload = () => {
           </button>
         </div>
 
+        {/* Keywords */}
         <input
           type="text"
           placeholder="Keywords (comma separated)"
@@ -76,6 +83,7 @@ const ProjectUpload = () => {
           className="input input-bordered w-full"
         />
 
+        {/* Description / Features */}
         <textarea
           placeholder="Features / Description"
           {...register("features", { required: true })}
@@ -83,6 +91,7 @@ const ProjectUpload = () => {
           className="textarea textarea-bordered w-full"
         ></textarea>
 
+        {/* Live Link */}
         <input
           type="text"
           placeholder="Live Website Link"
@@ -90,6 +99,7 @@ const ProjectUpload = () => {
           className="input input-bordered w-full"
         />
 
+        {/* GitHub Client Repo */}
         <input
           type="text"
           placeholder="GitHub (Client) Link"
@@ -97,6 +107,7 @@ const ProjectUpload = () => {
           className="input input-bordered w-full"
         />
 
+        {/* GitHub Server Repo */}
         <input
           type="text"
           placeholder="GitHub (Server) Link"
@@ -104,6 +115,7 @@ const ProjectUpload = () => {
           className="input input-bordered w-full"
         />
 
+        {/* Project Duration */}
         <input
           type="number"
           placeholder="Project Duration (Days)"
@@ -111,6 +123,23 @@ const ProjectUpload = () => {
           className="input input-bordered w-full"
         />
 
+        {/* Challenges Faced */}
+        <textarea
+          placeholder="Challenges faced while developing the project"
+          {...register("challenges")}
+          rows={3}
+          className="textarea textarea-bordered w-full"
+        ></textarea>
+
+        {/* Future Plans */}
+        <textarea
+          placeholder="Potential improvements and future plans"
+          {...register("futurePlans")}
+          rows={3}
+          className="textarea textarea-bordered w-full"
+        ></textarea>
+
+        {/* Submit Button */}
         <button type="submit" className="btn btn-primary w-full">
           Upload Project
         </button>

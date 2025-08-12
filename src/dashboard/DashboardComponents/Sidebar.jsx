@@ -75,6 +75,18 @@ const Sidebar = () => {
           </NavLink>
         </li>
 
+            <li>
+          <NavLink
+            to="/dashboard/upload-all-projects"
+            className={({ isActive }) =>
+              `flex items-center gap-3 transition-colors ${isActive ? activeClass : hoverClass}`
+            }
+          >
+            <FaUpload className="text-lg" />
+            <span className="hidden md:inline"> Uploaded Project</span>
+          </NavLink>
+        </li>
+
         {/* ✅ Logout Button */}
         <li>
           <button

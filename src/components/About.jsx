@@ -11,14 +11,11 @@ const About = () => {
   const bgColor = isDark ? "bg-gray-900" : "bg-white";
   const textColor = isDark ? "text-gray-200" : "text-gray-800";
   const accentColor = isDark ? "text-amber-400" : "text-cyan-600";
-  const btnBg = isDark ? "bg-amber-500" : "bg-cyan-600";
-  const btnHover = isDark ? "hover:bg-amber-600" : "hover:bg-cyan-700";
-  const btnText = "text-white";
 
   return (
     <section
       id="about"
-      className={`${bgColor} py-24 px-6 sm:px-12 md:px-20 rounded-3xl max-w-7xl mx-auto relative overflow-hidden`}
+      className={`${bgColor} py-20 px-12 sm:px-12 md:px-20 rounded-3xl max-w-7xl mx-auto relative overflow-hidden`}
     >
       {/* Background shape */}
       <motion.div
@@ -32,8 +29,11 @@ const About = () => {
         animate={{ rotate: -360 }}
         transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
       />
-
+          <h2 className={`md:text-5xl text-4xl text-center font-extrabold mb-10 ${textColor}`}>
+            About <span className={`${accentColor}`}>Me</span>
+          </h2>
       <div className="flex flex-col md:flex-row items-center gap-16 relative z-10">
+        
         {/* Left: Text */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
@@ -41,39 +41,31 @@ const About = () => {
           transition={{ duration: 0.8 }}
           className="md:w-1/2"
         >
-          <h2 className={`text-5xl font-extrabold mb-6 ${textColor}`}>
-            About <span className={`${accentColor}`}>Me</span>
-          </h2>
-
-          <p className={`text-lg leading-relaxed mb-8 ${textColor} opacity-90`}>
-            Hello! I’m{" "}
-            <span className={`${accentColor} font-semibold`}>Tanzia</span>, a
-            MERN stack developer passionate about creating beautiful, performant
-            web apps. I specialize in React, Node.js, and MongoDB, focusing on
-            seamless UX and scalable backend architecture.
+         
+          <p className={`${textColor} text-lg my-2  leading-relaxed`}>
+            Hello, I’m{" "}
+            <span className={`font-semibold ${accentColor}`}>
+              Tanzia Mourin Chowdhury
+            </span>
+            . I began my journey building foundational websites and have grown
+            into a MERN stack developer, crafting applications with clean
+            interfaces and reliable backends using React and Node.js.
           </p>
 
-          <div className="flex flex-wrap items-center gap-4">
-            <a
-              href="/tanzia-mourin-CV.pdf"
-              download
-              className={`inline-block sm:px-8 px-5 sm:py-3 py-2 rounded-full font-semibold shadow-lg transition-colors duration-300 ${btnBg} ${btnText} ${btnHover} hover:scale-105`}
-            >
-              Download My CV
-            </a>
-           
+          <p className={`${textColor} text-lg my-2  leading-relaxed`}>
+            I thrive on solving complex challenges by delivering seamless,
+            intuitive user experiences through innovative thinking.
+          </p>
 
-            <span className={`font-bold text-xl sm:text-2xl ${textColor}`}>
-              or
-            </span>
+          <p className={`${textColor} text-lg my-2  leading-relaxed`}>
+            When not coding, I find inspiration in painting and hiking —
+            activities that fuel my creativity and refresh my perspective.
+          </p>
 
-            <Link
-              to="/learn-more-about-me"
-              className={`inline-block sm:px-8 px-5 sm:py-3 py-2 rounded-full font-semibold shadow-lg transition-colors duration-300 ${btnBg} ${btnText} ${btnHover} hover:scale-105`}
-            >
-              Learn More
-            </Link>
-          </div>
+          <p className={`${textColor} text-lg my-2  leading-relaxed`}>
+            I approach each project with dedication, curiosity, and empathy,
+            constantly learning and evolving as a developer.
+          </p>
         </motion.div>
 
         {/* Right: Image with fancy border and shadow */}

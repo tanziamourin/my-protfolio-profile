@@ -48,7 +48,7 @@ const faqData = [
       <>
         Visit my{" "}
         <a
-          href="https://github.com/yourgithub"
+          href="https://github.com/tanziamourin"
           className="text-blue-500 hover:underline"
           target="_blank"
           rel="noopener noreferrer"
@@ -57,7 +57,7 @@ const faqData = [
         </a>{" "}
         or{" "}
         <a
-          href="https://linkedin.com/in/yourlinkedin"
+          href="https://www.linkedin.com/in/tanzia-mourin-chowdhury"
           className="text-blue-500 hover:underline"
           target="_blank"
           rel="noopener noreferrer"
@@ -104,7 +104,7 @@ const FAQ = () => {
                 transition={{ duration: 0.8 }}
                
               > 
-      <h2 className="text-4xl sm:text-5xl font-extrabold mb-15">Inquiries & <span className={accentColor}>Insights</span></h2>
+      <h2 className="text-4xl sm:text-5xl text-center font-extrabold mb-15">Inquiries & <span className={accentColor}>Insights</span></h2>
       <div className="space-y-5 ">
         {faqData.map((faq, index) => (
           <div

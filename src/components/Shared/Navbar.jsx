@@ -8,8 +8,11 @@ import { NavbarLogo } from "./NavbarLogo";
 
 const navItems = [
   { id: "home", label: "Home", path: "/" },
+  { id: "about", label: "About", path: "/about" },
   { id: "skills", label: "Skills", path: "/skills-and-journey" },
+  { id: "education", label: "Education", path: "/education" },
   { id: "projects", label: "Projects", path: "/projects" },
+  { id: "faq", label: "FAQ", path: "/faq" },
   { id: "contact", label: "Contact", path: "/contact" },
 ];
 
@@ -56,9 +59,9 @@ const Navbar = () => {
   const handleLinkClick = () => setIsOpen(false);
 
   return (
-    <div className="animated-border2 rounded-2xl p-[1px] sticky top-0 z-50 backdrop-blur-md border-b max-w-4xl mx-auto border-gray-300/20">
+    <div className="animated-border2 rounded-2xl p-[1px] sticky top-0 z-50 backdrop-blur-md border-b  mx-auto border-gray-300/20">
       <nav className="px-8 py-3 rounded-[0.9rem] shadow-sm">
-        <div className="flex items-center justify-between max-w-6xl mx-auto">
+        <div className="flex items-center justify-between max-w-7xl mx-auto">
           <NavbarLogo />
           {/* Desktop Menu: */}
           <div className="items-center hidden gap-6 md:flex">
